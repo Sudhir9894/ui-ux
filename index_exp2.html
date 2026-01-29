@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+ <head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>UI Interaction Patterns</title> 
+    <style> 
+        /* Add your styles here */  body {             font-family: Arial, sans-serif;             margin: 0;  padding: 0; 
+            display: flex;             align-items: center;  justify-content: center;             height: 100vh;  background-color: #f0f0f0; 
+        } 
+  .container {             text-align: center; 
+        } 
+        .box {             width: 100px;             height: 100px;             background-color: #3498db; 
+            color: #fff;             display: inline-block;             margin: 10px;             padding: 20px;             cursor: pointer;             transition: background-color 0.3s ease; 
+        } 
+        .box:hover {             background-color: #2980b9; 
+        } 
+        .draggable-box {             width: 100px;             height: 100px;             background-color: #e74c3c; 
+            color: #fff; 
+ 
+  	 display: inline-block; 
+            margin: 10px;  padding: 20px; 
+            cursor: move;             user-select: none; 
+        } 
+        .droppable-area {             width: 250px;             height: 250px;  background-color: #2ecc71; 
+            margin: 10px;  padding: 20px; 
+            display: inline-block; 
+        } 
+        .swipe-container {             width: 300px;             height: 150px;             overflow: hidden;  position: relative;             margin: 10px; 
+        } 
+        .swipe-content { white-space: nowrap; 
+            transition: transform 0.3s ease; 
+        } 
+.swipe-item { 
+            display: inline-block;             width: 100px;             height: 100px;  background-color: #f39c12; 
+            color: #fff;             margin: 10px; 
+  	padding: 20px; 
+            cursor: pointer; 
+        } 
+        .modal {             display: none;  position: fixed; 
+            top: 0;             left: 0;             width: 100%;             height: 100%;  background: rgba(0, 0, 0, 0.5);  justify-content: center;             align-items: center; } 
+        .modal-content {  background: #fff;  padding: 20px;  border-radius: 5px; 
+        } 
+.tabs { 
+            display: flex;             margin: 10px; 
+        }         .tab {             flex: 1; 
+ padding: 10px; 
+            text-align: center;             cursor: pointer;  border: 1px solid #ccc;  border-radius: 5px; 
+        } 
+        .tab-content {             display: none; 
+        } 
+    .dropdown {  position: relative;             display: inline-block;             margin: 10px; 
+        } 
+        .dropdown-content {             display: none;  position: absolute;  background-color: #fff;  box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+            z-index: 1; 
+} 
+        .dropdown:hover .dropdown-content { 
+            display: block; 
+        } 
+        .toggle-switch {  position: relative;             display: inline-block;             width: 60px;             height: 34px; 
+        } 
+ .toggle-switch input { 
+            opacity: 0;             width: 0;             height: 0;         } 
+        .slider {  position: absolute; 
+            cursor: pointer;             top: 0;             left: 0;             right: 0; 
+ bottom: 0;  background-color: #ccc; 
+            transition: .4s; 
+ border-radius: 34px; 
+        } 
+.slider:before { 
+ position: absolute;             content: "";             height: 26px;             width: 26px;             left: 4px; 
+bottom: 4px;  background-color: #fff; 
+            transition: .4s; 
+ border-radius: 50%; 
+        } 
+        input:checked + .slider {  background-color: #2196F3; 
+        } 
+         input:checked + .slider:before {             transform: translateX(26px); 
+        } 
+        .stepper {             margin: 10px; 
+        } 
+        .stepper input {             width: 50px;             text-align: center;             margin: 0 5px; 
+        } 
+        .progress-bar { 
+ 
+ width: 300px; 
+            height: 20px;  background-color: #ccc;             margin: 10px;  position: relative; 
+        } 
+        .progress-bar-fill {             height: 100%; 
+  	background-color: #3498db; 
+            width: 0;             transition: width 0.3s ease;   	position: absolute; 
+        } 
+    </style> 
+ </head> 
+ <body> 
+ <div class="container"> 
+    <div class="box" onclick="alert('Click/Tap Interaction')">Click/Tap</div> 
+    <div class="draggable-box" draggable="true" ondragstart="drag(event)">Drag  
+Me</div> 
+ <div class="droppable-area" ondrop="drop(event)"  ondragover="allowDrop(event)"> 
+        Drop Here 
+    </div> 
+    <div class="swipe-container" ontouchstart="handleTouchStart(event)"  ontouchmove="handleTouchMove(event)"> 
+        <div class="swipe-content"> 
+            <div class="swipe-item" onclick="alert('Swipe Interaction 1')">Swipe  
+1</div> 
+            <div class="swipe-item" onclick="alert('Swipe Interaction 2')">Swipe  
+2</div> 
+            <div class="swipe-item" onclick="alert('Swipe Interaction 3')">Swipe  
+3</div> 
+        </div> 
+    </div> 
+    <div class="modal" onclick="closeModal()"> 
+        <div class="modal-content" onclick="event.stopPropagation()"> 
+            <p onclick="alert('Modal/Popup Interaction')">Modal Content</p> 
+        </div> 
+    </div> 
+    <div class="tabs"> 
+        <div class="tab" onclick="showTab('tab1')">Tab 1</div> 
+        <div class="tab" onclick="showTab('tab2')">Tab 2</div>         <div class="tab" onclick="showTab('tab3')">Tab 3</div> 
+    </div> 
+    <div class="tab-content" id="tab1"> 
+        <p>Tab 1 Content</p> 
+    </div> 
+    <div class="tab-content" id="tab2" style="display:none"</div> 
+ 
